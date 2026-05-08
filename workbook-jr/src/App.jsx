@@ -121,6 +121,7 @@ export default function App() {
           >
             {isGenerating ? <Loader2 className="animate-spin mr-2" size={20} /> : <FileDown className="mr-2" size={20} />}
             {isGenerating ? 'Memproses...' : 'Download PDF'}
+          <p className="text-xs text-slate-400 mt-2 text-center leading-relaxed">Pilih <strong>Save as PDF</strong>, matikan <strong>Headers and footers</strong></p>
           </button>
           <div className="flex items-center justify-center text-xs text-slate-400 mt-3">
             <Save size={12} className="mr-1" />
