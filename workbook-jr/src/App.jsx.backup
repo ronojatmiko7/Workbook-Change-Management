@@ -8,6 +8,7 @@ export default function App() {
   const [formData, setFormData] = useState({});
   const [saveStatus, setSaveStatus] = useState('Auto-save aktif');
   const [isGenerating, setIsGenerating] = useState(false);
+  const saveTimer = useRef(null);
   const printAreaRef = useRef(null);
 
   // Load html2pdf dynamically
@@ -30,20 +31,21 @@ export default function App() {
     }
   }, []);
 
-  // Handle Input Changes
+  // Handle Input Changes & Auto-save
+
+
 const handleChange = (e) => {
   const { id, value } = e.target;
   const newData = { ...formData, [id]: value };
   setFormData(newData);
-  setSaveStatus('Ada perubahan belum tersimpan');
-};
-
-// Manual Save
-const handleSave = () => {
-  localStorage.setItem('jr_workbook_react', JSON.stringify(formData));
-  setSaveStatus('Menyimpan...');
-  setTimeout(() => setSaveStatus('Tersimpan di browser'), 500);
-  setTimeout(() => setSaveStatus('Siap'), 2000);
+  setSaveStatus('Mengetik...');
+  if (saveTimer.current) clearTimeout(saveTimer.current);
+  saveTimer.current = setTimeout(() => {
+    localStorage.setItem('jr_workbook_react', JSON.stringify(newData));
+    setSaveStatus('Menyimpan...');
+    setTimeout(() => setSaveStatus('Tersimpan di browser'), 500);
+    setTimeout(() => setSaveStatus('Auto-save aktif'), 2000);
+  }, 1000);
 };
 
   // Generate PDF
@@ -154,13 +156,6 @@ const handleSave = () => {
 
         <div className="p-6 border-t border-slate-700">
           <button 
-            onClick={handleSave}
-            className="w-full bg-slate-600 hover:bg-slate-500 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition shadow-lg mb-3"
-          >
-            <Save className="mr-2" size={20} />
-            Simpan Jawaban
-          </button>
-          <button
             onClick={generatePDF}
             disabled={isGenerating}
             className="w-full bg-[#F0C060] hover:bg-yellow-500 text-[#0D2137] disabled:opacity-70 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition shadow-lg"
@@ -330,14 +325,7 @@ const handleSave = () => {
           {/* Mobile Download Button */}
           <div className="md:hidden mt-8 text-center print:hidden">
             <button 
-              onClick={handleSave}
-            className="w-full bg-slate-600 hover:bg-slate-500 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition shadow-lg mb-3"
-          >
-            <Save className="mr-2" size={20} />
-            Simpan Jawaban
-          </button>
-          <button
-            onClick={generatePDF}
+              onClick={generatePDF}
               disabled={isGenerating}
               className="w-full bg-[#F0C060] text-[#0D2137] font-bold py-4 rounded-xl shadow-lg flex items-center justify-center disabled:opacity-70"
             >
