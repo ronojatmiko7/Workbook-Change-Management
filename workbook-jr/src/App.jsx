@@ -1,4 +1,3 @@
-cat > src/App.jsx << 'ENDOFFILE'
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   User, BookOpen, Lightbulb, Compass, 
@@ -302,4 +301,3 @@ export default function App() {
     </div>
   );
 }
-ENDOFFILE
