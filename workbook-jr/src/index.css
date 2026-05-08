@@ -9,3 +9,8 @@
   .print\:p-0 { padding: 0 !important; }
   .print\:break-before-page { break-before: page !important; }
 }
+
+.page-break {
+  break-before: page !important;
+  page-break-before: always !important;
+}

@@ -7,5 +7,8 @@ export default {
   theme: {
     extend: {},
   },
+  safelist: [
+    'print:break-before-page'
+  ],
   plugins: [],
 }

@@ -201,7 +201,7 @@ export default function App() {
               </div>
             </section>
 
-            <section id="sesi1" className="mb-12 print:break-before-page">
+            <section id="sesi1" className="mb-12 page-break">
               <div className="bg-[#0D2137] text-white px-6 py-3 rounded-t-lg">
                 <h2 className="text-xl font-bold">SESI 1: Kita dan Perubahan</h2>
                 <p className="text-sm text-[#F0C060] italic">Membuka Percakapan & Kontrak Belajar</p>
@@ -218,7 +218,7 @@ export default function App() {
               </div>
             </section>
 
-            <section id="sesi2" className="mb-12 print:break-before-page">
+            <section id="sesi2" className="mb-12 page-break">
               <div className="bg-[#0E7C6B] text-white px-6 py-3 rounded-t-lg">
                 <h2 className="text-xl font-bold">SESI 2: Mengapa Kita Bertahan?</h2>
                 <p className="text-sm text-green-100 italic">Psikologi di Balik Resistensi Perubahan</p>
@@ -234,7 +234,7 @@ export default function App() {
               </div>
             </section>
 
-            <section id="sesi3" className="mb-12 print:break-before-page">
+            <section id="sesi3" className="mb-12 page-break">
               <div className="bg-[#C0392B] text-white px-6 py-3 rounded-t-lg">
                 <h2 className="text-xl font-bold">SESI 3: Strategi Adaptasi</h2>
                 <p className="text-sm text-red-100 italic">Dari Bertahan Menjadi Bergerak Maju</p>
@@ -253,7 +253,7 @@ export default function App() {
               </div>
             </section>
 
-            <section id="sesi4" className="mb-12 print:break-before-page">
+            <section id="sesi4" className="mb-12 page-break">
               <div className="bg-[#F0C060] text-[#0D2137] px-6 py-3 rounded-t-lg">
                 <h2 className="text-xl font-bold">SESI 4: Resiliensi Tim</h2>
                 <p className="text-sm text-yellow-800 italic">Membangun Kekuatan Bersama Menghadapi Krisis</p>
@@ -269,7 +269,7 @@ export default function App() {
               </div>
             </section>
 
-            <section id="sesi5" className="mb-6 print:break-before-page">
+            <section id="sesi5" className="mb-6 page-break">
               <div className="bg-slate-800 text-white px-6 py-3 rounded-t-lg">
                 <h2 className="text-xl font-bold">SESI 5: Komitmen & Rencana Aksi</h2>
                 <p className="text-sm text-gray-300 italic">Mengubah Wawasan Menjadi Tindakan Nyata</p>
