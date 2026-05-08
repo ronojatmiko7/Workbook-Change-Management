@@ -7,3 +7,18 @@
   .print\:p-0 { padding: 0 !important; }
   .print\:break-before-page { break-before: page !important; }
 }
+
+/* Fix untuk html2pdf - override oklch colors ke hex */
+* {
+  --tw-color-slate-50: #f8fafc;
+  --tw-color-slate-100: #f1f5f9;
+}
+
+#print-area, #print-area * {
+  color-scheme: light;
+}
+
+#print-area {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}

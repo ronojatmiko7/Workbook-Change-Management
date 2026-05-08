@@ -106,7 +106,7 @@ export default function App() {
       margin: 10,
       filename: `Workbook_Manajemen_Perubahan_${userName.replace(/\s+/g, '_')}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, logging: false },
+      html2canvas: { scale: 2, useCORS: true, logging: false, allowTaint: true, foreignObjectRendering: false },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
     try {
@@ -163,7 +163,7 @@ export default function App() {
 
       <main className="flex-1 overflow-y-auto relative scroll-smooth w-full">
         <div className="max-w-4xl mx-auto py-10 px-6 sm:px-12">
-          <div ref={printAreaRef} className="bg-white rounded-xl shadow-sm p-8 sm:p-12 border border-gray-100 print:shadow-none print:border-none print:p-0">
+          <div ref={printAreaRef} id="print-area" className="bg-white rounded-xl shadow-sm p-8 sm:p-12 border border-gray-100 print:shadow-none print:border-none print:p-0">
 
             <div className="text-center border-b-4 border-[#0D2137] pb-8 mb-10">
               <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#0D2137] mb-2">WORKBOOK PESERTA</h2>
