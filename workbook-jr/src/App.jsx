@@ -31,19 +31,24 @@ export default function App() {
   }, []);
 
   // Handle Input Changes & Auto-save
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    const newData = { ...formData, [id]: value };
-    setFormData(newData);
-    
-    // Save to localStorage
+  const saveTimer = useRef(null);
+
+const handleChange = (e) => {
+  const { id, value } = e.target;
+  const newData = { ...formData, [id]: value };
+  setFormData(newData);
+  
+  setSaveStatus('Mengetik...');
+  
+  // Debounce — save setelah 1 detik berhenti ketik
+  clearTimeout(saveTimer.current);
+  saveTimer.current = setTimeout(() => {
     localStorage.setItem('jr_workbook_react', JSON.stringify(newData));
-    
-    // Status animation
     setSaveStatus('Menyimpan...');
     setTimeout(() => setSaveStatus('Tersimpan di browser'), 500);
     setTimeout(() => setSaveStatus('Auto-save aktif'), 2000);
-  };
+  }, 1000);
+};
 
   // Generate PDF
   const generatePDF = async () => {
