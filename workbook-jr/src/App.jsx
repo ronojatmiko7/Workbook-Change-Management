@@ -60,12 +60,6 @@ export default function App() {
   const printAreaRef = useRef(null);
 
   useEffect(() => {
-    if (!window.html2pdf) {
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
-      script.async = true;
-      document.body.appendChild(script);
-    }
     const savedData = localStorage.getItem('jr_workbook_react');
     if (savedData) {
       try {
@@ -89,56 +83,9 @@ export default function App() {
     setTimeout(() => setSaveStatus('Siap'), 2000);
   };
 
-  const generatePDF = async () => {
-  if (!window.html2pdf) {
-    alert("Library PDF sedang dimuat, silakan coba beberapa detik lagi.");
-    return;
-  }
-
-  setIsGenerating(true);
-  const element = printAreaRef.current;
-
-  // Fix oklch - replace semua oklch colors dengan hex equivalent
-  const allElements = element.querySelectorAll('*');
-  const originalStyles = [];
-  allElements.forEach((el, i) => {
-    const computed = window.getComputedStyle(el);
-    const bg = computed.backgroundColor;
-    const color = computed.color;
-    originalStyles[i] = { bg: el.style.backgroundColor, color: el.style.color };
-    if (bg.includes('oklch')) el.style.backgroundColor = '#ffffff';
-    if (color.includes('oklch')) el.style.color = '#000000';
-  });
-
-  const textareas = element.querySelectorAll('textarea');
-  textareas.forEach(ta => {
-    ta.style.height = 'auto';
-    ta.style.height = (ta.scrollHeight + 5) + 'px';
-  });
-
-  const userName = formData.nama || 'Peserta';
-  const opt = {
-    margin: 10,
-    filename: `Workbook_Manajemen_Perubahan_${userName.replace(/\s+/g, '_')}.pdf`,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, logging: false, allowTaint: true },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  const generatePDF = () => {
+    window.print();
   };
-
-  try {
-    await window.html2pdf().set(opt).from(element).save();
-  } catch (err) {
-    console.error("PDF generation failed:", err);
-    alert("Gagal membuat PDF.");
-  } finally {
-    // Restore original styles
-    allElements.forEach((el, i) => {
-      el.style.backgroundColor = originalStyles[i].bg;
-      el.style.color = originalStyles[i].color;
-    });
-    setIsGenerating(false);
-  }
-};
 
   const ip = { formData, onChange: handleChange };
 

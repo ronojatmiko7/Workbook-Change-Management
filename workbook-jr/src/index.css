@@ -14,3 +14,32 @@
   break-before: page !important;
   page-break-before: always !important;
 }
+
+@media print {
+  body { margin: 0; padding: 0; }
+  nav { display: none !important; }
+  .print\:hidden { display: none !important; }
+  
+  main { width: 100% !important; }
+  
+  .page-break { 
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  /* Preserve colors */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Fix textarea */
+  textarea {
+    border: 1px solid #ccc !important;
+    min-height: 80px !important;
+    resize: none !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+}
