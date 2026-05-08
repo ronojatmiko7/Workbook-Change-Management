@@ -8,6 +8,7 @@ export default function App() {
   const [formData, setFormData] = useState({});
   const [saveStatus, setSaveStatus] = useState('Auto-save aktif');
   const [isGenerating, setIsGenerating] = useState(false);
+  const saveTimer = useRef(null);
   const printAreaRef = useRef(null);
 
   // Load html2pdf dynamically
@@ -31,9 +32,7 @@ export default function App() {
   }, []);
 
   // Handle Input Changes & Auto-save
-  const saveTimer = useRef(null);
 
-const saveTimer = useRef(null);
 
 const handleChange = React.useCallback((e) => {
   const { id, value } = e.target;
