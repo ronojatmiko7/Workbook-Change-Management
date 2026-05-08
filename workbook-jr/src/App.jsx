@@ -132,9 +132,9 @@ export default function App() {
   );
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-100 font-sans">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100 font-sans">
       {/* Sidebar - Hidden on print */}
-      <nav className="w-64 bg-[#0D2137] text-white flex flex-col h-full shadow-xl z-10 flex-shrink-0 print:hidden">
+      <nav className="w-full md:w-64 bg-[#0D2137] text-white flex flex-col h-full shadow-xl z-10 flex-shrink-0 print:hidden">
         <div className="p-6 border-b border-slate-700">
           <h1 className="text-xl font-bold text-[#F0C060] leading-tight">Manajemen Perubahan</h1>
           <p className="text-xs text-slate-400 mt-2">PT Jasa Raharja (Persero)</p>
@@ -168,7 +168,7 @@ export default function App() {
       </nav>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto relative scroll-smooth">
+      <main className="flex-1 overflow-y-auto relative scroll-smooth w-full">
         <div className="max-w-4xl mx-auto py-10 px-6 sm:px-12">
           
           {/* Printable Container */}
