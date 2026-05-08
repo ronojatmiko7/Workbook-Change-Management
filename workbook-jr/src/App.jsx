@@ -34,23 +34,19 @@ export default function App() {
   // Handle Input Changes & Auto-save
 
 
-const handleChange = React.useCallback((e) => {
+const handleChange = (e) => {
   const { id, value } = e.target;
-  setFormData(prev => {
-    const newData = { ...prev, [id]: value };
-    
-    setSaveStatus('Mengetik...');
-    clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(() => {
-      localStorage.setItem('jr_workbook_react', JSON.stringify(newData));
-      setSaveStatus('Menyimpan...');
-      setTimeout(() => setSaveStatus('Tersimpan di browser'), 500);
-      setTimeout(() => setSaveStatus('Auto-save aktif'), 2000);
-    }, 1000);
-    
-    return newData;
-  });
-}, []);
+  const newData = { ...formData, [id]: value };
+  setFormData(newData);
+  setSaveStatus('Mengetik...');
+  if (saveTimer.current) clearTimeout(saveTimer.current);
+  saveTimer.current = setTimeout(() => {
+    localStorage.setItem('jr_workbook_react', JSON.stringify(newData));
+    setSaveStatus('Menyimpan...');
+    setTimeout(() => setSaveStatus('Tersimpan di browser'), 500);
+    setTimeout(() => setSaveStatus('Auto-save aktif'), 2000);
+  }, 1000);
+};
 
   // Generate PDF
   const generatePDF = async () => {
